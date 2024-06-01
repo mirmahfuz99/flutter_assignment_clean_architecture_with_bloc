@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/config/theme/light_theme.dart';
 import 'features/login/view/login_page.dart';
 
 class App extends StatefulWidget {
@@ -11,8 +12,10 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LoginPage(),
+    return MaterialApp(
+      theme: light,
+      debugShowCheckedModeBanner: false,
+      home: const LoginPage(),
     );
   }
 }
