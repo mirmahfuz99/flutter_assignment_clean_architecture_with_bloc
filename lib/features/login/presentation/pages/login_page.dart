@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/core/widgets/custom_button.dart';
 import 'package:flutter_assignment/core/widgets/custom_text_field.dart';
-import 'package:flutter_assignment/features/login/view/login_form.dart';
+import 'package:flutter_assignment/features/login/presentation/widgets/login_form.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
 import 'package:flutter_assignment/utils/images.dart';
 import 'package:flutter_assignment/utils/styles.dart';
 
-import '../../../core/widgets/custom_social_button.dart';
+import '../../../../core/widgets/custom_social_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

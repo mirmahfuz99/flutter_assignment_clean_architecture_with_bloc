@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/config/theme/light_theme.dart';
-import 'features/login/view/login_page.dart';
+import 'features/login/presentation/pages/login_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
