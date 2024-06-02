@@ -3,8 +3,10 @@ import 'package:flutter_assignment/features/login/domain/repository/auth_reposit
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
-class AuthenticationRepository implements AuthRepository{
+class AuthenticationRepositoryImpl implements AuthRepository{
   final _controller = StreamController<AuthenticationStatus>();
+
+
 
   Stream<AuthenticationStatus> get status async* {
     await Future<void>.delayed(const Duration(seconds: 1));
@@ -12,6 +14,7 @@ class AuthenticationRepository implements AuthRepository{
     yield* _controller.stream;
   }
 
+  //auth service will be called here
   @override
   Future<void> logIn({
     required String username,

@@ -8,10 +8,9 @@ import 'package:flutter_assignment/features/profile/data/repository/user_reposit
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
-    required AuthenticationRepository authenticationRepository,
+    required AuthenticationRepositoryImpl authenticationRepository,
     required UserRepositoryImpl userRepository,
   })  : _authenticationRepository = authenticationRepository,
         _userRepository = userRepository,
@@ -23,10 +22,9 @@ class AuthenticationBloc
     );
   }
 
-  final AuthenticationRepository _authenticationRepository;
+  final AuthenticationRepositoryImpl _authenticationRepository;
   final UserRepositoryImpl _userRepository;
-  late StreamSubscription<AuthenticationStatus>
-  _authenticationStatusSubscription;
+  late StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription;
 
   @override
   Future<void> close() {
