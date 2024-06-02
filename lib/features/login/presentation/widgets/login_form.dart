@@ -16,7 +16,13 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
-
+        if (state.status.isFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(content: Text('Authentication Failure')),
+            );
+        }
       },
       child: Column(
         children: [
@@ -122,11 +128,9 @@ class _LoginButton extends StatelessWidget {
       return state.status.isInProgress
       ? const CircularProgressIndicator() : CustomButton(
         height: 60.0,
-        onPressed: (){
-          state.isValid ? () {
-            context.read<LoginBloc>().add(const LoginSubmitted());
-          } : null;
-        },
+        onPressed: state.isValid ? () {
+          context.read<LoginBloc>().add(const LoginSubmitted());
+        } : null,
         buttonText: AppConstants.login,);
     });
   }

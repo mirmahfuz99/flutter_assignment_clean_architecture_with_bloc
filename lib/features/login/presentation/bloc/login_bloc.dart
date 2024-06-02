@@ -24,6 +24,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       LoginUsernameChanged event,
       Emitter<LoginState> emit,
       ) {
+    print("works");
     final username = Username.dirty(event.username);
     emit(
       state.copyWith(
@@ -50,6 +51,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       LoginSubmitted event,
       Emitter<LoginState> emit,
       ) async {
+
+    print("now");
+    print("tapped");
+
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {

@@ -4,6 +4,7 @@ import 'package:flutter_assignment/core/widgets/custom_text_field.dart';
 import 'package:flutter_assignment/features/login/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_assignment/features/login/presentation/widgets/login_form.dart';
+import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
 import 'package:flutter_assignment/utils/images.dart';
@@ -22,11 +23,7 @@ class LoginPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
           child: BlocProvider(
-            create: (context) {
-              return LoginBloc(
-                  authenticationRepository: RepositoryProvider.of<AuthenticationRepositoryImpl>(context),
-              );
-            },
+            create: (_) => sl<LoginBloc>(),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

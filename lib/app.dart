@@ -3,22 +3,17 @@ import 'package:flutter_assignment/config/routes/routes.dart';
 import 'package:flutter_assignment/config/theme/light_theme.dart';
 import 'package:flutter_assignment/features/authentication/bloc/authentication_bloc.dart';
 import 'package:flutter_assignment/features/login/data/repository/auth_repository_impl.dart';
+import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'injection_container.dart';
 
-class App extends StatefulWidget {
+
+class App extends StatelessWidget {
   const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
-      value: sl(),
+      value: sl<AuthenticationRepositoryImpl>(),
       child: BlocProvider(
         create: (_) => sl<AuthenticationBloc>(),
         child: const AppView(),
@@ -26,6 +21,7 @@ class _AppState extends State<App> {
     );
   }
 }
+
 
 class AppView extends StatefulWidget {
   const AppView({super.key});
