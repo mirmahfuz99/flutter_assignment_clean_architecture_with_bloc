@@ -14,3 +14,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+{
+"token": "eyJ0eXAiOc0L1YkCA",
+"user_email": "testone@gmail.com",
+"user_nicename": "test-one",
+"user_display_name": "Test One"
+}
