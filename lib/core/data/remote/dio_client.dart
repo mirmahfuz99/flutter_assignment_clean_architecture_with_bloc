@@ -69,7 +69,7 @@ class DioClient {
 
   Future<dynamic> post(
     String uri, {
-    Map<String, dynamic>? queryParameters,
+    Object? data,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
@@ -77,7 +77,7 @@ class DioClient {
     try {
       final response = await _dio.post(
         uri,
-        queryParameters: queryParameters,
+        data: data,
         options: options ?? Options(headers: {"requiresToken": false}),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,

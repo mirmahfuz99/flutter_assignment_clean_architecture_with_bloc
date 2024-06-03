@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assignment/config/routes/routes.dart';
 import 'package:flutter_assignment/config/theme/light_theme.dart';
 import 'package:flutter_assignment/features/authentication/bloc/authentication_bloc.dart';
-import 'package:flutter_assignment/features/login/data/repository/auth_repository_impl.dart';
+import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,6 +46,8 @@ class _AppViewState extends State<AppView> {
                 print("authenticated");
               case AuthenticationStatus.unauthenticated:
                 print("unauthenticated");
+              case AuthenticationStatus.registered:
+                print("registered");
               case AuthenticationStatus.unknown:
                 break;
             }

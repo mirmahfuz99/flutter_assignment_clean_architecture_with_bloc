@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_assignment/features/login/data/repository/auth_repository_impl.dart';
+import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/features/profile/data/models/user.dart';
 import 'package:flutter_assignment/features/profile/data/repository/user_repository_impl.dart';
 
@@ -46,6 +46,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
               ? AuthenticationState.authenticated(user)
               : const AuthenticationState.unauthenticated(),
         );
+
+      case AuthenticationStatus.registered:
+        return emit(const AuthenticationState.registered());
+
       case AuthenticationStatus.unknown:
         return emit(const AuthenticationState.unknown());
     }

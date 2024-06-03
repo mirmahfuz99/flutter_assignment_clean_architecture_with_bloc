@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assignment/core/widgets/custom_button.dart';
-import 'package:flutter_assignment/core/widgets/custom_text_field.dart';
-import 'package:flutter_assignment/features/login/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_assignment/features/login/presentation/widgets/login_form.dart';
 import 'package:flutter_assignment/injection_container.dart';
@@ -44,7 +41,13 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: Dimensions.paddingSizeExtraMoreLarge,),
-                  Text(AppConstants.createNewAccount,style: robotoLight.copyWith(fontSize: Dimensions.fontSizeLarge),),
+                  TextButton(
+                      onPressed: (){
+                        Navigator.pushNamed(context, '/SignupPage');
+                      },
+                      child: Text(AppConstants.createNewAccount,style: robotoLight.copyWith(
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                          fontSize: Dimensions.fontSizeLarge),),),
                 ],
               ),
             ),
