@@ -13,8 +13,8 @@ class UserRepositoryImpl implements UserRepository{
 
 
   @override
-  Future<User?> getUser() async {
-    if (_user != null) return _user;
+  Future<User> getUser() async {
+    if (_user != null) return _user!;
 
     // save to local db when login done then read from there
 

@@ -11,4 +11,6 @@ class AppConstants {
   static const String name = "Name";
   static const String signUp = "Sign Up";
 
+  static const String myAccount = "My Account";
+
 }

@@ -14,13 +14,28 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     required AuthenticationRepositoryImpl authenticationRepository,
   })  : _authenticationRepository = authenticationRepository,
         super(const SignUpState()) {
+    on<SignUpNameChanged>(_onNameChanged);
     on<SignUpUsernameChanged>(_onUsernameChanged);
     on<SignUpPasswordChanged>(_onPasswordChanged);
+    on<SignUpConfirmPasswordChanged>(_onConfirmPasswordChanged);
     on<SignUpSubmitted>(_onSubmitted);
   }
 
   final AuthenticationRepositoryImpl _authenticationRepository;
 
+  void _onNameChanged(
+      SignUpNameChanged event,
+      Emitter<SignUpState> emit,
+      ) {
+    print("works");
+    final name = Name.dirty(event.name);
+    emit(
+      state.copyWith(
+        name: name,
+        isValid: Formz.validate([state.password, name]),
+      ),
+    );
+  }
   void _onUsernameChanged(
       SignUpUsernameChanged event,
       Emitter<SignUpState> emit,
@@ -47,6 +62,18 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       ),
     );
   }
+  void _onConfirmPasswordChanged(
+      SignUpConfirmPasswordChanged event,
+      Emitter<SignUpState> emit,
+      ) {
+    final confirmPassword = Password.dirty(event.confirmPassword);
+    emit(
+      state.copyWith(
+        confirmPassword: confirmPassword,
+        isValid: Formz.validate([confirmPassword, state.username]),
+      ),
+    );
+  }
 
   Future<void> _onSubmitted(
       SignUpSubmitted event,
@@ -56,13 +83,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        /*await _authenticationRepository.signUp(
-          name: state.username.value,
-          email: state.username.value,
-          password: state.password.value,
-          confirmPassword: state.password.value,
-        );*/
-        emit(state.copyWith(status: FormzSubmissionStatus.success));
+        if(state.password.value == state.confirmPassword.value){
+          await _authenticationRepository.signUp(
+            name: state.username.value,
+            email: state.username.value,
+            password: state.password.value,
+            confirmPassword: state.password.value,
+          );
+          emit(state.copyWith(status: FormzSubmissionStatus.success));
+
+        }else{
+          print("password_and_confirm_password_not_matched");
+          emit(state.copyWith(status: FormzSubmissionStatus.failure));
+        }
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }

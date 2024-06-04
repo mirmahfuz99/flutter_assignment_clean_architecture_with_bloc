@@ -8,6 +8,17 @@ class Images {
   static String get name => 'name'.png;
   static String get password => 'password'.png;
 
+
+
+
+  static String get cart => 'cart'.png;
+  static String get category => 'category'.png;
+  static String get heart => 'heart'.png;
+  static String get home => 'home'.png;
+  static String get notification => 'notification'.png;
+  static String get profileDummyImage => 'profile_dummy_image'.png;
+  static String get search => 'search'.png;
+
 }
 
 extension on String {

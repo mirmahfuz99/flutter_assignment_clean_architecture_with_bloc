@@ -6,6 +6,7 @@ final class SignUpState extends Equatable {
     this.name = const Name.pure(),
     this.username = const Username.pure(),
     this.password = const Password.pure(),
+    this.confirmPassword = const Password.pure(),
     this.isValid = false,
   });
 
@@ -13,6 +14,7 @@ final class SignUpState extends Equatable {
   final Name name;
   final Username username;
   final Password password;
+  final Password confirmPassword;
   final bool isValid;
 
   SignUpState copyWith({
@@ -20,6 +22,7 @@ final class SignUpState extends Equatable {
     Name? name,
     Username? username,
     Password? password,
+    Password? confirmPassword,
     bool? isValid,
   }) {
     return SignUpState(
@@ -27,6 +30,7 @@ final class SignUpState extends Equatable {
       name: name ?? this.name,
       username: username ?? this.username,
       password: password ?? this.password,
+      confirmPassword: confirmPassword ?? this.confirmPassword,
       isValid: isValid ?? this.isValid,
     );
   }
