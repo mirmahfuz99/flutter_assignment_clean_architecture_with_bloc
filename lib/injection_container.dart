@@ -5,12 +5,13 @@ import 'package:flutter_assignment/features/authentication/bloc/authentication_b
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_assignment/features/profile/data/repository/user_repository_impl.dart';
-import 'package:flutter_assignment/features/profile/domain/repository/user_repo.dart';
 import 'package:flutter_assignment/features/profile/domain/usecases/get_user.dart';
 import 'package:flutter_assignment/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter_assignment/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'features/profile/domain/repository/user_repo.dart';
 
 
 String get baseUrl => APIPathHelper.baseUrl;
@@ -33,6 +34,9 @@ Future<void> initializeDependencies() async {
       AuthenticationRepositoryImpl(dioClient: sl(), sharedPreferences: sl())
   );
 
+  sl.registerSingleton<UserRepositoryImpl>(
+      UserRepositoryImpl(sl())
+  );
   sl.registerSingleton<UserRepository>(
       UserRepositoryImpl(sl())
   );

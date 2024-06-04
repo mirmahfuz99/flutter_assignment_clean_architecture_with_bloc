@@ -13,7 +13,7 @@ class Images {
 
   static String get cart => 'cart'.png;
   static String get category => 'category'.png;
-  static String get heart => 'heart'.png;
+  static String get wishlist => 'heart'.png;
   static String get home => 'home'.png;
   static String get notification => 'notification'.png;
   static String get profileDummyImage => 'profile_dummy_image'.png;

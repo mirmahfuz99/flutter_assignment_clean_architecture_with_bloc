@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ThemeData light = ThemeData(
   fontFamily: 'Ubuntu',
   primaryColor: const Color(0xFFF75F55),
-  primaryColorLight: const Color(0xFFF7F8FA),
+  primaryColorLight: const Color(0xFF899AA2),
   primaryColorDark: const Color(0xFF10324A),
   secondaryHeaderColor: const Color(0xFF9BB8DA),
 

@@ -40,8 +40,8 @@ class CustomButton extends StatelessWidget {
             padding: const EdgeInsets.only(right: Dimensions.paddingSizeExtraSmall,left: Dimensions.paddingSizeExtraSmall),
             child: Icon(icon, color: transparent! ? Theme.of(context).primaryColor : Colors.white,size: 18,),
           ) : const SizedBox(),
-          Text(buttonText ??'', textAlign: TextAlign.center, style: robotoMedium.copyWith(
-            color: transparent! ? Theme.of(context).primaryColor : Colors.white,
+          Text(buttonText ??'', textAlign: TextAlign.center, style: robotoBold.copyWith(
+            color: transparent! ? Theme.of(context).primaryColorLight : Colors.white,
             fontSize: fontSize ?? Dimensions.fontSizeDefault,
           )),
         ]),
