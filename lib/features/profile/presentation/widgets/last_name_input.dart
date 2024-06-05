@@ -3,11 +3,11 @@ import 'package:flutter_assignment/core/widgets/custom_text_field.dart';
 import 'package:flutter_assignment/features/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
-import 'package:flutter_assignment/utils/images.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LastNameInput extends StatelessWidget {
-  const LastNameInput({super.key});
+  final String lastName;
+  const LastNameInput({super.key, required this.lastName});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,13 @@ class LastNameInput extends StatelessWidget {
                 )]
             ),
             child: CustomTextField(
-              prefixIcon: Image.asset(Images.name,scale: 3,),
+              initialValue: lastName,
               title: AppConstants.lastName,
               hintText: AppConstants.lastName,
               inputType: TextInputType.name,
-              isAutoFocus: true,
               capitalization: TextCapitalization.words,
               onChanged: (lastName) => context.read<EditProfileBloc>().add(EditProfileLastNameChanged(lastName)),
-
-              onValidate: (String? value){
-              },
+              errorText: state.lastName.displayError != null ? "last name can't empty": null,
             ),
           );
         });

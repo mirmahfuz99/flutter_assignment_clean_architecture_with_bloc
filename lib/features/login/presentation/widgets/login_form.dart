@@ -74,9 +74,7 @@ class _UserNameInput extends StatelessWidget {
               isAutoFocus: true,
               capitalization: TextCapitalization.words,
               onChanged: (username) => context.read<LoginBloc>().add(LoginUsernameChanged(username)),
-
-              onValidate: (String? value){
-              },
+              errorText: state.username.displayError != null ? "username can't empty": null,
             ),
           );
         });
@@ -109,8 +107,7 @@ class _PasswordInput extends StatelessWidget {
               isAutoFocus: true,
               capitalization: TextCapitalization.words,
               onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
-              onValidate: (String? value){
-              },
+              errorText: state.username.displayError != null ? "password can't empty": null,
             ),
           );
       }

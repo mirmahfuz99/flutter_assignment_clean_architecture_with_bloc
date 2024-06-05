@@ -1,5 +1,10 @@
 
 class AppConstants {
+
+  static const String userPreference = "userPreference";
+  static const String user = "user";
+
+
   static const String signIn = "Sign In";
   static const String email = "Email";
   static const String password = "Password";

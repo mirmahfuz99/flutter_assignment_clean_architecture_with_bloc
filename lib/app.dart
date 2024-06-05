@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/config/routes/route_name.dart';
 import 'package:flutter_assignment/config/routes/routes.dart';
 import 'package:flutter_assignment/config/theme/light_theme.dart';
 import 'package:flutter_assignment/features/authentication/bloc/authentication_bloc.dart';
@@ -32,6 +33,8 @@ class AppView extends StatefulWidget {
 
 class _AppViewState extends State<AppView> {
   final _navigatorKey = GlobalKey<NavigatorState>();
+  NavigatorState get _navigator => _navigatorKey.currentState!;
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +47,11 @@ class _AppViewState extends State<AppView> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                print("authenticated");
+                _navigator.pushNamedAndRemoveUntil(RouteName.bottomNavPage, (route) => false);
               case AuthenticationStatus.unauthenticated:
-                print("unauthenticated");
+                _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
               case AuthenticationStatus.registered:
-                print("registered");
+                _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
               case AuthenticationStatus.unknown:
                 break;
             }
@@ -56,6 +59,7 @@ class _AppViewState extends State<AppView> {
           child: child,
         );
       },
+      initialRoute: RouteName.splashPage,
       onGenerateRoute: AppRoutes.onGenerateRoutes,
     );
   }

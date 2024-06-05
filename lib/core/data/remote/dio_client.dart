@@ -73,6 +73,7 @@ class DioClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
   }) async {
     try {
       final response = await _dio.post(
@@ -81,6 +82,7 @@ class DioClient {
         options: options ?? Options(headers: {"requiresToken": false}),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
+        queryParameters: queryParameters,
       );
       return response.data;
     } on SocketException catch (e) {

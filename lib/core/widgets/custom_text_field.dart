@@ -5,6 +5,8 @@ import 'package:flutter_assignment/utils/styles.dart';
 class CustomTextField extends StatefulWidget {
   final String? hintText;
   final String? title;
+  final String? initialValue;
+  final String? errorText;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final FocusNode? nextFocus;
@@ -49,6 +51,8 @@ class CustomTextField extends StatefulWidget {
         this.borderRadius = Dimensions.radiusSmall,
         this.fillColor,
         this.title,
+        this.initialValue,
+        this.errorText,
       });
 
   @override
@@ -61,10 +65,11 @@ class CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: widget.initialValue,
       maxLines: widget.maxLines,
       controller: widget.controller,
       focusNode: widget.focusNode,
-      style: robotoRegular.copyWith(fontSize:Dimensions.fontSizeDefault,color: widget.isEnabled==false?Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6):Theme.of(context).textTheme.bodyLarge!.color),
+      style: robotoRegular.copyWith(fontSize:Dimensions.fontSizeDefault,color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6)),
       textInputAction: widget.inputAction,
       keyboardType: widget.inputType,
       cursorColor: Theme.of(context).hintColor,
@@ -100,6 +105,7 @@ class CustomTextFieldState extends State<CustomTextField> {
           icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Theme.of(context).hintColor.withOpacity(0.3)),
           onPressed: _toggle,
         ) : null,
+        errorText: widget.errorText,
       ),
       onFieldSubmitted: (text) => widget.nextFocus != null ?
       FocusScope.of(context).requestFocus(widget.nextFocus) :

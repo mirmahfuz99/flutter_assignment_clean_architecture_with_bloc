@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/features/profile/data/models/user.dart';
+import 'package:flutter_assignment/features/profile/data/models/user_preferences.dart';
 import 'package:flutter_assignment/features/profile/data/repository/user_repository_impl.dart';
 
 part 'authentication_event.dart';
@@ -42,7 +43,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       case AuthenticationStatus.authenticated:
         final user = await _tryGetUser();
         return emit(
-          user != null
+          user!.token != null
               ? AuthenticationState.authenticated(user)
               : const AuthenticationState.unauthenticated(),
         );
@@ -62,9 +63,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     _authenticationRepository.logOut();
   }
 
-  Future<User?> _tryGetUser() async {
+  Future<UserPreferences?> _tryGetUser() async {
     try {
-      final user = await _userRepository.getUser();
+      final user = await _userRepository.getUserPreferences();
       return user;
     } catch (_) {
       return null;

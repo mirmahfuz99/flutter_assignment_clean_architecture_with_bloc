@@ -57,6 +57,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
 
+        _authenticationRepository.updateProfile(firstName: state.firstName.value, lastName: state.lastName.value);
 
         await Future.delayed(const Duration(seconds: 1), (){
           emit(state.copyWith(status: FormzSubmissionStatus.success));

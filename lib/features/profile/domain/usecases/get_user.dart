@@ -1,4 +1,3 @@
-
 import 'package:flutter_assignment/core/usecase/usecase.dart';
 import 'package:flutter_assignment/features/profile/data/models/user.dart';
 import 'package:flutter_assignment/features/profile/domain/repository/user_repo.dart';

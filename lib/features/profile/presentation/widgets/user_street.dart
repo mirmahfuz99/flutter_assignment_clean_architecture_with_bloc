@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assignment/core/widgets/custom_text_field.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
-import 'package:flutter_assignment/utils/images.dart';
 
 class UserStreet extends StatelessWidget {
   final String userStreet;
@@ -17,10 +16,11 @@ class UserStreet extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
 
       ),
-      child: const CustomTextField(
+      child: CustomTextField(
         borderRadius: Dimensions.radiusDefault,
         title: AppConstants.email,
-        inputType: TextInputType.emailAddress,
+        inputType: TextInputType.text,
+        controller: TextEditingController(text:userStreet),
         isEnabled: false,
       ),
     );

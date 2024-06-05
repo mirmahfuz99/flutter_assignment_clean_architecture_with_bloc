@@ -3,14 +3,15 @@ import 'package:flutter_assignment/core/data/remote/api_endpoints.dart';
 import 'package:flutter_assignment/core/data/remote/dio_client.dart';
 import 'package:flutter_assignment/features/authentication/bloc/authentication_bloc.dart';
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
+import 'package:flutter_assignment/features/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:flutter_assignment/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_assignment/features/profile/data/repository/user_repository_impl.dart';
 import 'package:flutter_assignment/features/profile/domain/usecases/get_user.dart';
+import 'package:flutter_assignment/features/profile/domain/usecases/get_user_preferences.dart';
 import 'package:flutter_assignment/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter_assignment/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'features/profile/domain/repository/user_repo.dart';
 
 
@@ -43,6 +44,7 @@ Future<void> initializeDependencies() async {
 
   //UseCases
   sl.registerSingleton<GetUserUseCase>(GetUserUseCase(sl()));
+  sl.registerSingleton<GetUserPreferencesUseCase>(GetUserPreferencesUseCase(sl()));
 
 
   //Blocs
@@ -58,7 +60,10 @@ Future<void> initializeDependencies() async {
   );
 
   sl.registerFactory<ProfileBloc>(
-      ()=> ProfileBloc(sl())
+      ()=> ProfileBloc(sl(), sl())
+  );
+  sl.registerFactory<EditProfileBloc>(
+      ()=> EditProfileBloc(authenticationRepository: sl())
   );
 
 }

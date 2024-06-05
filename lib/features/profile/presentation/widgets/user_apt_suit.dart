@@ -17,10 +17,11 @@ class UserAptSuit extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
 
       ),
-      child: const CustomTextField(
+      child: CustomTextField(
         borderRadius: Dimensions.radiusDefault,
         title: AppConstants.email,
         inputType: TextInputType.emailAddress,
+        controller: TextEditingController(text:userAptSuit),
         isEnabled: false,
       ),
     );

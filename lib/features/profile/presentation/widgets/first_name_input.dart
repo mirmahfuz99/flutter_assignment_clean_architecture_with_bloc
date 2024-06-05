@@ -7,7 +7,8 @@ import 'package:flutter_assignment/utils/images.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FirstNameInput extends StatelessWidget {
-  const FirstNameInput({super.key});
+  final String firstName;
+  const FirstNameInput({super.key, required this.firstName});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +27,14 @@ class FirstNameInput extends StatelessWidget {
                 )]
             ),
             child: CustomTextField(
-              prefixIcon: Image.asset(Images.name,scale: 3,),
               title: AppConstants.firstName,
               hintText: AppConstants.firstName,
+              initialValue: firstName,
               inputType: TextInputType.name,
-              isAutoFocus: true,
               capitalization: TextCapitalization.words,
               onChanged: (firstName) => context.read<EditProfileBloc>().add(EditProfileFirstNameChanged(firstName)),
+              errorText: state.firstName.displayError != null ? "first name can't empty": null,
+
             ),
           );
         });

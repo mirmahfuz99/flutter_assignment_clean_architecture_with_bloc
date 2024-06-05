@@ -1,5 +1,6 @@
 class Images {
   static String get logo => 'dokan_logo'.png;
+  static String get splashLogo => 'splash_logo'.png;
   static String get camera => 'camera'.png;
   static String get closeEye => 'close_eye'.png;
   static String get email => 'email'.png;

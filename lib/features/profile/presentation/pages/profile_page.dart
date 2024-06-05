@@ -4,7 +4,8 @@ import 'package:flutter_assignment/core/widgets/custom_button.dart';
 import 'package:flutter_assignment/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter_assignment/features/profile/presentation/bloc/profile_event.dart';
 import 'package:flutter_assignment/features/profile/presentation/bloc/profile_state.dart';
-import 'package:flutter_assignment/features/profile/presentation/widgets/profile_account_section.dart';
+import 'package:flutter_assignment/features/profile/presentation/widgets/profile_account.dart';
+import 'package:flutter_assignment/features/profile/presentation/widgets/profile_password.dart';
 import 'package:flutter_assignment/features/profile/presentation/widgets/user_email.dart';
 import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
@@ -43,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
             return const Center(child: CircularProgressIndicator(),);
           }
           if(state is ProfileLoaded){
-            print(state.user!.userEmail);
+
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
@@ -64,11 +65,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Image.asset(Images.profileDummyImage, scale: 3,),
                         )),
                     const SizedBox(height: Dimensions.paddingSizeExtraMoreLarge,),
-                    Text(state.user!.userDisplayName!, style: robotoBold.copyWith(
+                    Text(state.userPreferences!.userDisplayName!, style: robotoBold.copyWith(
                       fontSize: Dimensions.fontSizeOverLarge,
                     ),),
                     const SizedBox(height: Dimensions.paddingSizeExtraSmall,),
-                    Text(state.user!.userEmail!, style: robotoRegular.copyWith(
+                    Text(state.userPreferences!.userEmail!, style: robotoRegular.copyWith(
                       fontSize: Dimensions.fontSizeDefault,
                       color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5)
                     ),),
@@ -88,42 +89,23 @@ class _ProfilePageState extends State<ProfilePage> {
                         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
                         child: Column(
                           children: [
-                            ProfileAccountSection(user: state.user!,),
+                            ProfileAccountSection(user: state.user!,userPreferences: state.userPreferences!,),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
-                              child: Divider(color: Theme.of(context).primaryColorLight.withOpacity(.5),),
+                              child: Divider(color: Theme.of(context).primaryColorLight.withOpacity(.3),),
                             ),
-                            ExpansionTile(
-                              trailing: trailing(),
-                              backgroundColor: Colors.transparent,
-                              expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                              childrenPadding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
 
+                            const ProfilePassword(),
 
-                              title: Row(
-                                children: [
-                                  Image.asset(Images.password,scale: 3,),
-                                  const SizedBox(width: Dimensions.paddingSizeDefault,),
-                                  Text(AppConstants.passwords,style: robotoRegular.copyWith(
-                                      fontSize: Dimensions.fontSizeLarge
-                                  ),),
-                                ],
-                              ),
-                              children: const [
-                                Text("Not yet implemented",style: robotoRegular,)
-                              ],
-                            ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
                               child: Divider(
                                 height: 2.0,
-                                color: Theme.of(context).primaryColorLight.withOpacity(.5),),
+                                color: Theme.of(context).primaryColorLight.withOpacity(.3),),
                             ),
                             ExpansionTile(
                               trailing: trailing(),
-                              onExpansionChanged: (bool expanded) {
-                                setState(() => _isExpanded = expanded);
-                              },
+                              enabled: false,
                               backgroundColor: Colors.transparent,
                               expandedCrossAxisAlignment: CrossAxisAlignment.start,
                               childrenPadding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
@@ -132,19 +114,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Image.asset(Images.notification,scale: 3,),
                                   const SizedBox(width: Dimensions.paddingSizeDefault,),
                                   Text(AppConstants.notification,style: robotoRegular.copyWith(
+                                      color: Theme.of(context).textTheme.bodySmall!.color!,
                                       fontSize: Dimensions.fontSizeLarge
                                   ),),
                                 ],
                               ),
-                              children: const [
-                                Text("Not yet implemented",style: robotoRegular,)
-                              ],
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
-                              child: Divider(color: Theme.of(context).primaryColorLight.withOpacity(.5),),
+                              child: Divider(color: Theme.of(context).primaryColorLight.withOpacity(.3),),
                             ),
                             ExpansionTile(
+                              enabled: false,
                               trailing: trailing(),
                               onExpansionChanged: (bool expanded) {
                                 setState(() => _isExpanded = expanded);
@@ -161,7 +142,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     TextSpan(
                                       children: [
                                         TextSpan(text: AppConstants.wishlist,style: robotoRegular.copyWith(
-                                            fontSize: Dimensions.fontSizeLarge
+                                            fontSize: Dimensions.fontSizeLarge,
+                                          color: Theme.of(context).textTheme.bodySmall!.color!,
+
                                         ),),
                                         TextSpan(
                                           text: '(00)',
