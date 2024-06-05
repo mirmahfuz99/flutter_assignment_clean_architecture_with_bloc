@@ -1,4 +1,6 @@
 class Images {
+  static const String placeholder = 'assets/images/placeholder.png';
+
   static String get logo => 'dokan_logo'.png;
   static String get splashLogo => 'splash_logo'.png;
   static String get camera => 'camera'.png;
@@ -19,6 +21,9 @@ class Images {
   static String get notification => 'notification'.png;
   static String get profileDummyImage => 'profile_dummy_image'.png;
   static String get search => 'search'.png;
+
+  static String get filter => 'filter'.png;
+  static String get menu => 'menu'.png;
 
 }
 

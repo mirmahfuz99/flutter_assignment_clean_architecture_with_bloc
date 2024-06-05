@@ -30,5 +30,10 @@ class AppConstants {
   static const String zipCode = "Zip Code";
   static const String save = "Save";
   static const String cancel = "Cancel";
+  static const String productList = "Product List";
+  static const String filter = "Filter";
+  static const String sortBy = "Sort by";
+
+
 
 }
