@@ -7,7 +7,10 @@ import 'package:flutter_assignment/features/authentication/data/repository/auth_
 import 'package:flutter_assignment/features/home/presentation/bloc/product_bloc.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_event.dart';
 import 'package:flutter_assignment/injection_container.dart';
+import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class App extends StatelessWidget {
@@ -34,6 +37,7 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
+  final SharedPreferences sharedPreferences = GetIt.instance<SharedPreferences>();
   final _navigatorKey = GlobalKey<NavigatorState>();
   NavigatorState get _navigator => _navigatorKey.currentState!;
 
@@ -67,7 +71,7 @@ class _AppViewState extends State<AppView> {
             child: child,
           );
         },
-        initialRoute: RouteName.splashPage,
+        initialRoute: sharedPreferences.getString(AppConstants.userPreference) != null ?  RouteName.bottomNavPage : RouteName.signinPage,
         onGenerateRoute: AppRoutes.onGenerateRoutes,
       ),
     );
