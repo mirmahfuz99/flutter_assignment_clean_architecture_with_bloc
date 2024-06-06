@@ -37,7 +37,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       EditProfileLastNameChanged event,
       Emitter<EditProfileState> emit,
       ) {
-    print("works");
+    // print("works");
     final lastName = LastName.dirty(event.lastName);
     emit(
       state.copyWith(
@@ -47,7 +47,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     );
   }
 
-
   Future<void> _onSubmitted(
       EditProfileSubmitted event,
       Emitter<EditProfileState> emit,
@@ -56,12 +55,15 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-
-        _authenticationRepository.updateProfile(firstName: state.firstName.value, lastName: state.lastName.value);
+        // print(state.firstName.value);
+        // print(state.lastName.value);
+        await _authenticationRepository.updateProfile(firstName: state.firstName.value, lastName: state.lastName.value);
 
         await Future.delayed(const Duration(seconds: 1), (){
           emit(state.copyWith(status: FormzSubmissionStatus.success));
         });
+
+
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }

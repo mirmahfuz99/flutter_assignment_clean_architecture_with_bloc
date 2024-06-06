@@ -17,16 +17,12 @@ class FirstNameInput extends StatelessWidget {
         builder: (context, state){
           return Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                border: Border.all(color: Theme.of(context).cardColor.withOpacity(.5)),
-                borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusSmall)),
-                boxShadow: [BoxShadow(
-                  offset: const Offset(0, 3),
-                  blurRadius: 6,
-                  color: Colors.black.withOpacity(0.10),
-                )]
+              color: Theme.of(context).cardColor,
+              border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(.3)),
+              borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
             ),
             child: CustomTextField(
+              borderRadius: Dimensions.radiusDefault,
               title: AppConstants.firstName,
               hintText: AppConstants.firstName,
               initialValue: firstName,

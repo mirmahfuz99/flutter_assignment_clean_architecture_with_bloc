@@ -33,114 +33,119 @@ class _ProfileAccountSectionState extends State<ProfileAccountSection> {
   bool _isExpanded = false;
 
   @override
+  void initState() {
+    super.initState();
+    context.read<EditProfileBloc>().add(EditProfileFirstNameChanged(widget.user.firstName??''));
+    context.read<EditProfileBloc>().add(EditProfileLastNameChanged(widget.user.lastName??''));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<EditProfileBloc>(),
-      child: ExpansionTile(
-        trailing: trailing(),
+    return ExpansionTile(
+      trailing: trailing(),
 
-        onExpansionChanged: (bool expanded) {
-          setState(() => _isExpanded = expanded);
-        },
-        backgroundColor: Colors.transparent,
-        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-        childrenPadding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+      onExpansionChanged: (bool expanded) {
+        setState(() => _isExpanded = expanded);
+      },
+      backgroundColor: Colors.transparent,
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      childrenPadding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
 
 
-        title: Row(
-          children: [
-            Image.asset(Images.name,scale: 3,),
-            const SizedBox(width: Dimensions.paddingSizeDefault,),
-            Text(AppConstants.account,style: robotoRegular.copyWith(
-                fontSize: Dimensions.fontSizeLarge
-            ),),
-          ],
-        ),
+      title: Row(
         children: [
-          Text(AppConstants.email,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          UserEmail(userEmail: widget.userPreferences.userEmail!,),
-
-
-          const SizedBox(height: Dimensions.paddingSizeDefault,),
-          Text(AppConstants.firstName,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          FirstNameInput(
-            firstName: widget.user.firstName??'',
-          ),
-
-          const SizedBox(height: Dimensions.paddingSizeDefault,),
-          Text(AppConstants.lastName,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          LastNameInput(
-            lastName: widget.user.lastName??'',
-          ),
-
-
-          const SizedBox(height: Dimensions.paddingSizeDefault,),
-
-          Text(AppConstants.fullName,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          FullNameInput(userEmail: "${widget.user.firstName??''} ${widget.user.lastName??''}",),
-
-          Text(AppConstants.streetAddress,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          const UserStreet(userStreet: "465 Nolan Causeway Suite 079",),
-          const SizedBox(height: Dimensions.paddingSizeDefault,),
-
-          Text(AppConstants.aptSuiteBldg,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          const UserAptSuit(userAptSuit: 'Unit 512',),
-          const SizedBox(height: Dimensions.paddingSizeDefault,),
-
-          Text(AppConstants.zipCode,style: robotoRegular.copyWith(
-              color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
-              fontSize: Dimensions.fontSizeLarge),),
-          const SizedBox(height: Dimensions.paddingSizeSmall,),
-          const UserZipCode(userZipCode: "77017",),
-          const SizedBox(height: Dimensions.paddingSizeExtraLarge,),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: (){
-                  print("tapped");
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 2.6,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius:  const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-                    border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(.3)),
-                  ),
-                  child: Center(child: Text(AppConstants.cancel,style: robotoBold.copyWith(
-                    color: Theme.of(context).primaryColorLight,
-                  ),)),
-                ),
-              ),
-
-
-              const _EditSaveButton(),
-
-            ],
-          )
-
-
+          Image.asset(Images.name,scale: 3,),
+          const SizedBox(width: Dimensions.paddingSizeDefault,),
+          Text(AppConstants.account,style: robotoRegular.copyWith(
+              fontSize: Dimensions.fontSizeLarge
+          ),),
         ],
       ),
+      children: [
+        Text(AppConstants.email,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        UserEmail(userEmail: widget.userPreferences.userEmail!,),
+
+
+        const SizedBox(height: Dimensions.paddingSizeDefault,),
+        Text(AppConstants.firstName,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        FirstNameInput(
+          firstName: widget.user.firstName??'',
+        ),
+
+        const SizedBox(height: Dimensions.paddingSizeDefault,),
+        Text(AppConstants.lastName,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        LastNameInput(
+          lastName: widget.user.lastName??'',
+        ),
+
+
+        const SizedBox(height: Dimensions.paddingSizeDefault,),
+
+        Text(AppConstants.fullName,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        FullNameInput(fullName: "${widget.user.firstName??''} ${widget.user.lastName??''}",),
+
+        const SizedBox(height: Dimensions.paddingSizeDefault,),
+        Text(AppConstants.streetAddress,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        const UserStreet(userStreet: "465 Nolan Causeway Suite 079",),
+        const SizedBox(height: Dimensions.paddingSizeDefault,),
+
+        Text(AppConstants.aptSuiteBldg,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        const UserAptSuit(userAptSuit: 'Unit 512',),
+        const SizedBox(height: Dimensions.paddingSizeDefault,),
+
+        Text(AppConstants.zipCode,style: robotoRegular.copyWith(
+            color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.5),
+            fontSize: Dimensions.fontSizeLarge),),
+        const SizedBox(height: Dimensions.paddingSizeSmall,),
+        const UserZipCode(userZipCode: "77017",),
+        const SizedBox(height: Dimensions.paddingSizeExtraLarge,),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+              onTap: (){
+                print("tapped");
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width / 2.6,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius:  const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+                  border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(.3)),
+                ),
+                child: Center(child: Text(AppConstants.cancel,style: robotoBold.copyWith(
+                  color: Theme.of(context).primaryColorLight,
+                ),)),
+              ),
+            ),
+
+
+            const _EditSaveButton(),
+
+          ],
+        )
+
+
+      ],
     );
   }
 
@@ -167,20 +172,21 @@ class _EditSaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
         builder: (context, state){
-
           if(state.status.isSuccess){
             context.read<ProfileBloc>().add(const GetUser());
+            print("second_call_profile_event");
           }
-
-          return state.status.isInProgress ? const CircularProgressIndicator() : CustomButton(
-            height: 50,
-            backgroundColor: const Color(0xff1ABC9C),
+          // print(state.status);
+          return SizedBox(
             width: MediaQuery.of(context).size.width / 2.6,
-            buttonText: AppConstants.save,
-            onPressed: state.isValid ? () {
-              context.read<EditProfileBloc>().add(const EditProfileSubmitted());
-
-            }: null,
+            child: state.status.isInProgress ? const Center(child: CircularProgressIndicator()) : CustomButton(
+              height: 50,
+              backgroundColor: const Color(0xff1ABC9C),
+              buttonText: AppConstants.save,
+              onPressed: state.isValid ? () {
+                context.read<EditProfileBloc>().add(const EditProfileSubmitted());
+              }: null,
+            ),
           );
     });
   }

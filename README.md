@@ -4,21 +4,40 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Packages Used:
 
 
-{
-"token": "eyJ0eXAiOc0L1YkCA",
-"user_email": "testone@gmail.com",
-"user_nicename": "test-one",
-"user_display_name": "Test One"
-}
+
+dependencies used:
+
+formz: Provides form representation and validation in Dart.
+
+equatable:
+Being able to compare objects in Dart,
+== returns true if two objects are the same instance.
+
+flutter_bloc: Makes easy to integrate blocs and cubits into flutter.Basicaly used with
+bloc package.
+
+get_it:
+This is a simple Service Locator for Dart and Flutter
+
+dio:
+A powerful HTTP networking package for Dart/Flutter. Supports Global configuration, Interceptors and others.
+
+pretty_dio_logger:
+Pretty Dio logger is a Dio interceptor that logs network calls in a pretty, easy to read format.
+
+freezed:
+code generator for data-classes
+
+freezed_annotation: Annotations for freezed package
+
+shared_preferences: Flutter plugin for reading and writing simple key-value pairs
+cached_network_image: Flutter library to load and cache network images.
+
+
+build_runner: provides a concrete way of generating files using Dart code. 
+
+
+

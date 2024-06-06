@@ -14,7 +14,6 @@ class UserEmail extends StatelessWidget {
           color: Theme.of(context).cardColor,
           border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(.3)),
           borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-
       ),
       child:  CustomTextField(
         borderRadius: Dimensions.radiusDefault,

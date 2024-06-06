@@ -4,6 +4,7 @@ import 'package:flutter_assignment/config/routes/routes.dart';
 import 'package:flutter_assignment/config/theme/light_theme.dart';
 import 'package:flutter_assignment/features/authentication/bloc/authentication_bloc.dart';
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
+import 'package:flutter_assignment/features/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_bloc.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_event.dart';
 import 'package:flutter_assignment/injection_container.dart';
@@ -48,6 +49,9 @@ class _AppViewState extends State<AppView> {
       providers: [
         BlocProvider<ProductBloc>(
           create: (_) => sl<ProductBloc>()..add(const GetProducts()),
+        ),
+        BlocProvider<EditProfileBloc>(
+          create: (_) => sl<EditProfileBloc>(),
         ),
       ],
       child: MaterialApp(

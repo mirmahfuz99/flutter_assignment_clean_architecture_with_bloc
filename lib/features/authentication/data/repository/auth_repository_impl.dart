@@ -74,7 +74,7 @@ class AuthenticationRepositoryImpl implements AuthRepository{
   @override
   Future<void> updateProfile({required String firstName, required String lastName}) async {
     print("inside_update_profile");
-    var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwdGVzdC5kb2thbmRlbW8uY29tIiwiaWF0IjoxNzE3MjcyNjU3LCJuYmYiOjE3MTcyNzI2NTcsImV4cCI6MTcxNzg3NzQ1NywiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMzY3In19fQ.bXgEVsGYU_Ldn9Aa8sPHAnf5LcWEVmjPoblYzcE2Azk";
+    var token = UserPreferences.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.userPreference)!)).token??'';
 
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -89,6 +89,7 @@ class AuthenticationRepositoryImpl implements AuthRepository{
 
     final user = User.fromJson(httpResponse);
     sharedPreferences.setString(AppConstants.user, jsonEncode(user));
+    print("first_saved");
   }
 
   @override

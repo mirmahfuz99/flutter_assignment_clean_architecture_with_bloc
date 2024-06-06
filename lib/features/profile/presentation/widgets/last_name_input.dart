@@ -12,20 +12,15 @@ class LastNameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
-        buildWhen: (previous, current) => previous.lastName != current.lastName,
         builder: (context, state){
           return Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                border: Border.all(color: Theme.of(context).cardColor.withOpacity(.5)),
-                borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusSmall)),
-                boxShadow: [BoxShadow(
-                  offset: const Offset(0, 3),
-                  blurRadius: 6,
-                  color: Colors.black.withOpacity(0.10),
-                )]
+              color: Theme.of(context).cardColor,
+              border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(.3)),
+              borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
             ),
             child: CustomTextField(
+              borderRadius: Dimensions.radiusDefault,
               initialValue: lastName,
               title: AppConstants.lastName,
               hintText: AppConstants.lastName,
