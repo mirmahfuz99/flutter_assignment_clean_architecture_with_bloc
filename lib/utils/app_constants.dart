@@ -29,6 +29,7 @@ class AppConstants {
   static const String aptSuiteBldg = "Apt, Suite, Bldg (optional)";
   static const String zipCode = "Zip Code";
   static const String save = "Save";
+  static const String apply = "Apply";
   static const String cancel = "Cancel";
   static const String productList = "Product List";
   static const String filter = "Filter";

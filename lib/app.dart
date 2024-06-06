@@ -4,6 +4,8 @@ import 'package:flutter_assignment/config/routes/routes.dart';
 import 'package:flutter_assignment/config/theme/light_theme.dart';
 import 'package:flutter_assignment/features/authentication/bloc/authentication_bloc.dart';
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
+import 'package:flutter_assignment/features/home/presentation/bloc/product_bloc.dart';
+import 'package:flutter_assignment/features/home/presentation/bloc/product_event.dart';
 import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,29 +40,36 @@ class _AppViewState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: light,
-      navigatorKey: _navigatorKey,
-      debugShowCheckedModeBanner: false,
-      builder: (context, child) {
-        return BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-            switch (state.status) {
-              case AuthenticationStatus.authenticated:
-                _navigator.pushNamedAndRemoveUntil(RouteName.bottomNavPage, (route) => false);
-              case AuthenticationStatus.unauthenticated:
-                _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
-              case AuthenticationStatus.registered:
-                _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
-              case AuthenticationStatus.unknown:
-                break;
-            }
-          },
-          child: child,
-        );
-      },
-      initialRoute: RouteName.splashPage,
-      onGenerateRoute: AppRoutes.onGenerateRoutes,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductBloc>(
+          create: (_) => sl<ProductBloc>()..add(const GetProducts()),
+        ),
+      ],
+      child: MaterialApp(
+        theme: light,
+        navigatorKey: _navigatorKey,
+        debugShowCheckedModeBanner: false,
+        builder: (context, child) {
+          return BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (context, state) {
+              switch (state.status) {
+                case AuthenticationStatus.authenticated:
+                  _navigator.pushNamedAndRemoveUntil(RouteName.bottomNavPage, (route) => false);
+                case AuthenticationStatus.unauthenticated:
+                  _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
+                case AuthenticationStatus.registered:
+                  _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
+                case AuthenticationStatus.unknown:
+                  break;
+              }
+            },
+            child: child,
+          );
+        },
+        initialRoute: RouteName.splashPage,
+        onGenerateRoute: AppRoutes.onGenerateRoutes,
+      ),
     );
   }
 }

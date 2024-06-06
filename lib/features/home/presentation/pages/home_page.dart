@@ -3,6 +3,7 @@ import 'package:flutter_assignment/core/widgets/custom_app_bar.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_bloc.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_event.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_state.dart';
+import 'package:flutter_assignment/features/home/presentation/widgets/build_bottom_sheet.dart';
 import 'package:flutter_assignment/features/home/presentation/widgets/products_section.dart';
 import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
@@ -25,15 +26,10 @@ class HomePage extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge),
-            child: Image.asset(Images.search,scale: 3,color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.8),),
-          ),
-
-        ],
-        ),
-      body: BlocProvider(
-        create: (_) => sl<ProductBloc>()..add(const GetProducts()),
-        child: _buildBody(),
-      )
+            child: Image.asset(Images.search,scale: 3,color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.8),),),
+            ],
+      ),
+      body: _buildBody(),
     );
   }
 
@@ -48,55 +44,74 @@ class HomePage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-                      boxShadow: [BoxShadow(
-                          offset: const Offset(0, 3),
-                          blurRadius: 6,
-                          color: Colors.black.withOpacity(0.10),
-                        )],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset(Images.filter, scale: 3,),
-                              const SizedBox(width: Dimensions.paddingSizeSmall),
-                              Text(AppConstants.filter,style: robotoRegular.copyWith(
-                                fontSize: Dimensions.fontSizeDefault,
-                                color: Theme.of(context).primaryColorLight,
-                              ),),
-                            ],
+                  child: InkWell(
+                    onTap: (){
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        backgroundColor: Colors.white,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadiusDirectional.only(
+                            topEnd: Radius.circular(Dimensions.radiusSmall),
+                            topStart: Radius.circular(Dimensions.radiusSmall),
                           ),
-                          Row(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(AppConstants.sortBy,style: robotoRegular.copyWith(
-                                    fontSize: Dimensions.fontSizeDefault,
-                                    color: Theme.of(context).primaryColorLight,
-                                  ),),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall,),
-                                  RotatedBox(
-                                      quarterTurns: 1,
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Theme.of(context).primaryColorLight,
-                                      )),
-                                ],
-                              ),
+                        ),
+                        builder: (context) => BuildBottomSheet(
+                          selectedCriteria: state.criteria!,
+                        ),
+                      );
+                    },
 
-                              const SizedBox(width: Dimensions.paddingSizeLarge,),
-                              Image.asset(Images.menu, scale: 3,),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: const BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+                        boxShadow: [BoxShadow(
+                            offset: const Offset(0, 3),
+                            blurRadius: 6,
+                            color: Colors.black.withOpacity(0.10),
+                          )],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(Images.filter, scale: 3,),
+                                const SizedBox(width: Dimensions.paddingSizeSmall),
+                                Text(AppConstants.filter,style: robotoRegular.copyWith(
+                                  fontSize: Dimensions.fontSizeDefault,
+                                  color: Theme.of(context).primaryColorLight,
+                                ),),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(AppConstants.sortBy,style: robotoRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeDefault,
+                                      color: Theme.of(context).primaryColorLight,
+                                    ),),
+                                    const SizedBox(width: Dimensions.paddingSizeExtraSmall,),
+                                    RotatedBox(
+                                        quarterTurns: 1,
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Theme.of(context).primaryColorLight,
+                                        )),
+                                  ],
+                                ),
 
-                            ],
-                          ),
-                        ],
+                                const SizedBox(width: Dimensions.paddingSizeLarge,),
+                                Image.asset(Images.menu, scale: 3,),
+
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
