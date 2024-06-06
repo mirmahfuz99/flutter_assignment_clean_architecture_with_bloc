@@ -28,7 +28,7 @@ class AuthenticationRepositoryImpl implements AuthRepository{
     yield* _controller.stream;
   }
 
-  //auth service will be called here
+  //auth login
   @override
   Future<void> logIn({
     required String username,
@@ -46,7 +46,7 @@ class AuthenticationRepositoryImpl implements AuthRepository{
     }
   }
 
-  //auth service will be called here
+  //auth signup
   @override
   Future<void> signUp({
     required String name,

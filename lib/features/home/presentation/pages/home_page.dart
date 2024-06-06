@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/core/widgets/custom_app_bar.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_bloc.dart';
-import 'package:flutter_assignment/features/home/presentation/bloc/product_event.dart';
 import 'package:flutter_assignment/features/home/presentation/bloc/product_state.dart';
 import 'package:flutter_assignment/features/home/presentation/widgets/build_bottom_sheet.dart';
 import 'package:flutter_assignment/features/home/presentation/widgets/products_section.dart';
-import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
 import 'package:flutter_assignment/utils/images.dart';

@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
 import 'package:flutter_assignment/features/edit_profile/data/models/first_name.dart';
 import 'package:flutter_assignment/features/edit_profile/data/models/last_name.dart';
-import 'package:flutter_assignment/features/profile/data/models/user.dart';
 import 'package:formz/formz.dart';
 import 'package:bloc/bloc.dart';
 part 'edit_profile_state.dart';

@@ -16,8 +16,13 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
+      body: _buildBody(context)
+    );
+  }
+
+  _buildBody(context){
+    return Center(
+      child: Padding(
           padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
           child: BlocProvider(
             create: (_) => sl<SignUpBloc>(),
@@ -74,7 +79,6 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
           )
-        ),
       ),
     );
   }

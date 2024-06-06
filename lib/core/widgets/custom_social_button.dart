@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
-import 'package:flutter_assignment/utils/images.dart';
-import 'package:flutter_assignment/utils/styles.dart';
 
 class CustomSocialButton extends StatelessWidget {
   final Function()? onPressed;

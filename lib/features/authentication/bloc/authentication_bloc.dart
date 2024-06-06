@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_assignment/features/authentication/data/repository/auth_repository_impl.dart';
-import 'package:flutter_assignment/features/profile/data/models/user.dart';
 import 'package:flutter_assignment/features/profile/data/models/user_preferences.dart';
 import 'package:flutter_assignment/features/profile/data/repository/user_repository_impl.dart';
 
