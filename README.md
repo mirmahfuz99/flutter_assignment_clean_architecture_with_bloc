@@ -3,7 +3,7 @@
 A flutter project built with flutter bloc and clean architecture have features like authentication and home.
 This application utilizes the BLoC (Business Logic Component) pattern and Clean Architecture principles to ensure a scalable and maintainable application.
 
-The application is divided into different layers:
+The application each features is divided into different layers:
 - Data Layer - Manages data retrieval and persistence
 - Domain Layer - Encapsulates business logic and entities, providing use cases that interact with the presentation layer.
 - Presentation Layer - Handles UI components and user interactions, utilizing Flutter widgets and BLoC for state management.
