@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assignment/core/widgets/custom_button.dart';
 import 'package:flutter_assignment/core/widgets/custom_text_field.dart';
 import 'package:flutter_assignment/features/signup/presentation/bloc/signup_bloc.dart';
-import 'package:flutter_assignment/features/signup/presentation/widgets/name_input.dart';
+import 'package:flutter_assignment/features/signup/presentation/widgets/user_name_input.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
 import 'package:flutter_assignment/utils/images.dart';
@@ -26,9 +26,9 @@ class SignUpForm extends StatelessWidget {
       },
       child: const Column(
         children: [
-          NameInput(),
+          UserNameInput(),
           SizedBox(height: Dimensions.paddingSizeDefault,),
-          _UserNameInput(),
+          _EmailInput(),
           SizedBox(height: Dimensions.paddingSizeDefault,),
           _PasswordInput(),
           SizedBox(height: Dimensions.paddingSizeDefault,),
@@ -44,8 +44,8 @@ class SignUpForm extends StatelessWidget {
 }
 
 
-class _UserNameInput extends StatelessWidget {
-  const _UserNameInput({super.key});
+class _EmailInput extends StatelessWidget {
+  const _EmailInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class _UserNameInput extends StatelessWidget {
               hintText: AppConstants.email,
               isAutoFocus: true,
               inputType: TextInputType.emailAddress,
-              onChanged: (username) => context.read<SignUpBloc>().add(SignUpUsernameChanged(username)),
+              onChanged: (username) => context.read<SignUpBloc>().add(SignUpEmailChanged(username)),
 
               onValidate: (String? value){
               },
@@ -103,11 +103,7 @@ class _PasswordInput extends StatelessWidget {
               title: AppConstants.password,
               hintText: AppConstants.password,
               isAutoFocus: true,
-              isPassword: true,
-              capitalization: TextCapitalization.words,
               onChanged: (password) => context.read<SignUpBloc>().add(SignUpPasswordChanged(password)),
-              onValidate: (String? value){
-              },
             ),
           );
       }
@@ -122,7 +118,7 @@ class _ConfirmPasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-        buildWhen: (previous, current) => previous.password != current.password,
+        buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
         builder: (context, state){
           return Container(
             decoration: BoxDecoration(
@@ -140,11 +136,7 @@ class _ConfirmPasswordInput extends StatelessWidget {
               title: AppConstants.confirmPassword,
               hintText: AppConstants.confirmPassword,
               isAutoFocus: true,
-              isPassword: true,
-              capitalization: TextCapitalization.words,
-              onChanged: (password) => context.read<SignUpBloc>().add(SignUpPasswordChanged(password)),
-              onValidate: (String? value){
-              },
+              onChanged: (confirmPassword) => context.read<SignUpBloc>().add(SignUpConfirmPasswordChanged(confirmPassword)),
             ),
           );
       }

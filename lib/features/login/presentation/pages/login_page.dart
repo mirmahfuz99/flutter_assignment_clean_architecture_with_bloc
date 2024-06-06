@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/config/routes/route_name.dart';
 import 'package:flutter_assignment/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_assignment/features/login/presentation/widgets/login_form.dart';
 import 'package:flutter_assignment/injection_container.dart';
@@ -43,7 +44,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: Dimensions.paddingSizeExtraMoreLarge,),
                   TextButton(
                       onPressed: (){
-                        Navigator.pushNamed(context, '/SignupPage');
+                        Navigator.pushNamed(context, RouteName.signupPage);
                       },
                       child: Text(AppConstants.createNewAccount,style: robotoLight.copyWith(
                           color: Theme.of(context).textTheme.bodySmall!.color,

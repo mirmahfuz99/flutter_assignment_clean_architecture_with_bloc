@@ -105,6 +105,7 @@ class _PasswordInput extends StatelessWidget {
               title: AppConstants.password,
               hintText: AppConstants.password,
               isAutoFocus: true,
+              isPassword: true,
               capitalization: TextCapitalization.words,
               onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
               errorText: state.username.displayError != null ? "password can't empty": null,

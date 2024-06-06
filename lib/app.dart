@@ -61,9 +61,12 @@ class _AppViewState extends State<AppView> {
         builder: (context, child) {
           return BlocListener<AuthenticationBloc, AuthenticationState>(
             listener: (context, state) {
+              print("status: ${state.status}");
               switch (state.status) {
-                case AuthenticationStatus.authenticated:
-                  _navigator.pushNamedAndRemoveUntil(RouteName.bottomNavPage, (route) => false);
+                case AuthenticationStatus.authenticated :
+                  if(ModalRoute.of(context) != null ? ModalRoute.of(context)!.settings.name != RouteName.bottomNavPage:true) {
+                    _navigator.pushNamedAndRemoveUntil(RouteName.bottomNavPage, (route) => false);
+                  }
                 case AuthenticationStatus.unauthenticated:
                   _navigator.pushNamedAndRemoveUntil(RouteName.signinPage, (route) => false);
                 case AuthenticationStatus.registered:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/config/routes/route_name.dart';
 import 'package:flutter_assignment/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:flutter_assignment/features/signup/presentation/widgets/signup_form.dart';
 import 'package:flutter_assignment/injection_container.dart';
@@ -64,7 +65,7 @@ class SignUpPage extends StatelessWidget {
                       Text(AppConstants.createNewAccount,style: robotoLight.copyWith(fontSize: Dimensions.fontSizeLarge),),
                       TextButton(
                           onPressed: (){
-
+                            Navigator.pushNamed(context, RouteName.signinPage);
                           },
                           child: Text(AppConstants.login,style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge),)),
                     ],

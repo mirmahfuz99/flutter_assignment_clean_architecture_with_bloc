@@ -11,7 +11,6 @@ import 'package:flutter_assignment/features/profile/presentation/widgets/last_na
 import 'package:flutter_assignment/features/profile/presentation/widgets/user_apt_suit.dart';
 import 'package:flutter_assignment/features/profile/presentation/widgets/user_street.dart';
 import 'package:flutter_assignment/features/profile/presentation/widgets/zip_code.dart';
-import 'package:flutter_assignment/injection_container.dart';
 import 'package:flutter_assignment/utils/app_constants.dart';
 import 'package:flutter_assignment/utils/dimensions.dart';
 import 'package:flutter_assignment/utils/images.dart';
@@ -32,6 +31,13 @@ class ProfileAccountSection extends StatefulWidget {
 class _ProfileAccountSectionState extends State<ProfileAccountSection> {
   bool _isExpanded = false;
 
+  void _collapseTile() {
+    setState(() {
+      _isExpanded = false;
+    });
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -42,8 +48,9 @@ class _ProfileAccountSectionState extends State<ProfileAccountSection> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      key: UniqueKey(), // Ensure a unique key for rebuilding
       trailing: trailing(),
-
+      initiallyExpanded: _isExpanded,
       onExpansionChanged: (bool expanded) {
         setState(() => _isExpanded = expanded);
       },
@@ -124,6 +131,7 @@ class _ProfileAccountSectionState extends State<ProfileAccountSection> {
             InkWell(
               onTap: (){
                 print("tapped");
+                _collapseTile();
               },
               child: Container(
                 width: MediaQuery.of(context).size.width / 2.6,

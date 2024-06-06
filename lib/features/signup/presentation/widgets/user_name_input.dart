@@ -7,13 +7,13 @@ import 'package:flutter_assignment/utils/dimensions.dart';
 import 'package:flutter_assignment/utils/images.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NameInput extends StatelessWidget {
-  const NameInput({super.key});
+class UserNameInput extends StatelessWidget {
+  const UserNameInput({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-        buildWhen: (previous, current) => previous.username != current.username,
+        buildWhen: (previous, current) => previous.name != current.name,
         builder: (context, state){
           return Container(
             decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class NameInput extends StatelessWidget {
               inputType: TextInputType.name,
               isAutoFocus: true,
               capitalization: TextCapitalization.words,
-              onChanged: (username) => context.read<SignUpBloc>().add(SignUpUsernameChanged(username)),
+              onChanged: (name) => context.read<SignUpBloc>().add(SignUpUserNameChanged(name)),
 
               onValidate: (String? value){
               },
